@@ -50,7 +50,7 @@ const MapCities = () => {
     <section className="body-container">
       <MapContainer
         id="map"
-        zoom={8}
+        zoom={5}
         center={center}
         scrollWheelZoom={true}
         fadeAnimation={true}
