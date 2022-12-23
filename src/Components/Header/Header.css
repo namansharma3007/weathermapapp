@@ -1,0 +1,13 @@
+.header-name{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background: transparent;
+}
+
+.header-name > img{
+    height: 50px;
+}

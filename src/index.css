@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+
+}
+::-webkit-scrollbar{
+    display: none;
+}
+:root{
+    --text-black: #000;
+    --white: #ffffff;
+    --transition: 400ms ease;
+}
+
+body{
+    line-height: 1.2rem;
+    /* background-image: url('./Assets/liquid-cheese.svg'); */
+}
