@@ -5,8 +5,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import FetchDataCity from "../FetchData/FetchDataCity";
 
-const cities = ["New York","Agra","Chicago","Houston","Phoenix","Philadelphia","San Antonio","San Diego","Dallas","San Jose","Austin","Jacksonville","Fort Worth","Columbus","San Francisco","Charlotte","Indianapolis","Seattle","Denver","Washington DC","Boston","Nashville","El Paso","Detroit","Memphis","Portland","Alaska","Delhi","Louisville","Baltimore","Milwaukee"
-];
+const cities = ["New York","Agra","Chicago","Houston","Phoenix","Philadelphia","San Antonio","San Diego","Dallas","San Jose","Austin","Jacksonville","Fort Worth","Columbus","San Francisco","Charlotte","Indianapolis","Seattle","Denver","Washington DC","Boston","Nashville","El Paso","Detroit","Memphis","Portland","Alaska","Delhi","Louisville","Baltimore"];
 
 const MapCities = () => {
   const [page, setPage] = useState(1);
