@@ -5,35 +5,18 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import FetchDataCity from "../FetchData/FetchDataCity";
 
-const cities = ["New York","Paris","London","Barcelona","Sydney","Singapore","Tokyo","Dubai","New Delhi","Toronto","San Francisco","Madrid","Rome","Mumbai","Berlin","Johannesburg","Mexico City","Shanghai","Beijing","Bangkok","Kuala Lumpur","Istanbul","Buenos Aires","Rio de Janeiro","Hong Kong","Seoul","Amsterdam","Brussels","Dublin","Melbourne","Budapest"
-  ];
 
 const MapCities = () => {
-  const [page, setPage] = useState(1);
-  const size = 10;
-  const [citiesToDisplay, setCitiesToDisplay] = useState([]);
 
-  // select the list to be displayed
-  useEffect(() => {
-    const skip = size * (page - 1);
-    const limit = size;
-    setCitiesToDisplay(cities.slice(skip, skip + limit));
-  }, [page, size]);
 
   const [cityName, setCity] = useState("");
+  const [useCity, setuseCity] = useState("");
 
-  const citiesLinks = citiesToDisplay
-    ? citiesToDisplay.map((item) => (
-        <a
-          className="cities-name"
-          href="#"
-          key={item}
-          onClick={() => setCity(item)}
-        >
-          <span>{item}</span>
-        </a>
-      ))
-    : null;
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+ 
 
   const { cityData, error } = FetchDataCity(cityName);
 
@@ -47,8 +30,18 @@ const MapCities = () => {
       : [28.6667, 77.2167];
 
   return (
-    
     <section className="body-container">
+      <form>
+        <input
+          type="text"
+          value={useCity}
+          placeholder="enter your city"
+          onChange={(event) => setuseCity(event.target.value)}
+        />
+        <button type="submit" onClick={() => setCity(useCity)}>
+          Search
+        </button>
+      </form>
       <MapContainer
         id="map"
         zoom={2}
@@ -56,36 +49,38 @@ const MapCities = () => {
         scrollWheelZoom={true}
         fadeAnimation={true}
         markerZoomAnimation={true}
-        >
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+        />
         <Marker position={center} icon={myIcon}>
-          {cityData == null ? <Popup>Fetching data or please select any city</Popup> : 
-          <Popup>
-            <p>{cityData?.name}</p>
-            <div className="cloud-deiscription">
-              <img src={`https://openweathermap.org/img/wn/${cityData?.weather[0]?.icon}.png`} alt="description" />
-              <span>{cityData?.weather[0]?.description}</span>
-            </div>
-            <p>Temp: {cityData?.main ? `${cityData?.main?.temp}°C` : ""}</p>
-            <p>
-              Humidity: {cityData?.main ? `${cityData?.main?.humidity}%` : ""}
-            </p>
-            <p>
-              Wind Speed: {cityData?.wind ? `${cityData?.wind?.speed} m/s` : ""}
-            </p>
-          </Popup>
-}
+          {cityData == null ? (
+            <Popup>Fetching data or please select any city</Popup>
+          ) : (
+            <Popup>
+              <p>{cityData?.name}</p>
+              <div className="cloud-deiscription">
+                <img
+                  src={`https://openweathermap.org/img/wn/${cityData?.weather[0]?.icon}.png`}
+                  alt="description"
+                />
+                <span>{cityData?.weather[0]?.description}</span>
+              </div>
+              <p>Temp: {cityData?.main ? `${cityData?.main?.temp}°C` : ""}</p>
+              <p>
+                Humidity: {cityData?.main ? `${cityData?.main?.humidity}%` : ""}
+              </p>
+              <p>
+                Wind Speed:{" "}
+                {cityData?.wind ? `${cityData?.wind?.speed} m/s` : ""}
+              </p>
+            </Popup>
+          )}
         </Marker>
       </MapContainer>
 
-      <aside className="list-cities">{citiesLinks}</aside>
-      <div className="pagination-section">
-        {page > 1 ? <button className="pagination-button" onClick={() => setPage(page-1)}>Prev</button> : null}
-        {page < 3 ? <button className="pagination-button" onClick={()=> setPage(page+1)}>Next</button> : null}
-      </div>
+      
     </section>
   );
 };

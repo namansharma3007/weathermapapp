@@ -1,9 +1,11 @@
 .body-container{
     display: flex;
     background: transparent;
-    height: 100vh;
-    justify-content: space-evenly;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    flex-direction: column;
 }
 
 #map { 
@@ -12,53 +14,25 @@
     margin: 0.8rem;
 }
 
-.list-cities{
-    width: 300px;
-    background: transparent;
-    position: relative;
-    left: 0;
-    height: 80vh;
-    overflow: hidden;
-    /* padding: 1rem; */
+
+form{
     display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    margin: 0.8rem;
+    gap: 2rem;
 }
 
-.cities-name{
-    color: var(--text-black);
-    height: 60px;
-    width: 100%;
-    padding: 2px;
-    border-color: var(--white);
-    background: #3d5a80;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--white);
-    transition: var(--transition);
-}
-.cities-name:hover{
-    border: 1px solid var(--white);
-}
-.cities-name:focus{
-    scale: 1.2;
-    background: #2c405b;
+input[type="text"]{
+    height: 30px;
+    padding: 5px;
+    border-radius: 30px;
+    width: 200px
 }
 
-.pagination-section{
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 40%;
-    transform: translateY(50%);
-    bottom: 2rem;
+input[type="text"]::placeholder{
+    margin: 40px
 }
-.pagination-button{
-    padding: 10px 18px;
+
+button{
+    padding: 8.5px 18px;
     border-radius: 2rem;
     background: #3d5a80;
     border: none;
@@ -66,12 +40,6 @@
     transition: var(--transition);
 }
 
-.pagination-button:hover{
+button:hover{
     background: #918d8d;
-    scale: 1.1;
-}
-.cloud-deiscription{
-    display: flex;
-    width: 100%;
-    align-items: center;
 }
