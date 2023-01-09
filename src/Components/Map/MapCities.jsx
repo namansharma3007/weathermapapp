@@ -31,7 +31,7 @@ const MapCities = () => {
 
   return (
     <section className="body-container">
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={useCity}
